@@ -33,7 +33,7 @@ use App\image;
 
 // Real for Assignmenet 
 Route::controller('/','ViewController');
-// Route::get('/views','ViewController');
+Route::get('/views','ViewController');
 Route::post('user/login','ViewController@do_login');
 Route::group(array("prefix"=>"check"),function(){
 	Route::post("check-username",function(){
