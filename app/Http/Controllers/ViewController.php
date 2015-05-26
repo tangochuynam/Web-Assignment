@@ -20,10 +20,10 @@ class ViewController extends Controller {
 	$view la bat buocm, con 2 tham so kia la tuy chon 
 */
 	// if use subfolder for View type subfolder.nameOfView
-	// public function getTest($id) {
-	// 	return view ("mainlayout");
-	// 	// return view('app');
-	// }
+	public function getTest($id) {
+		return view ("mainlayout");
+		// return view('app');
+	}
 	//end-TEST
 	public function getFacebook() {
 		return view("Facebook_Login.index");
