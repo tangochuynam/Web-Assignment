@@ -1,0 +1,15 @@
+a.arr:hover {
+	color: #FF9031;
+}
+.img-portfolio {
+    margin-bottom: 30px;
+}
+
+.img-hover:hover {
+    opacity: 0.8;
+}
+img-responsive >img-size {
+    width: 275px;
+    height: 183px;
+    border: 1px solid black;
+}
