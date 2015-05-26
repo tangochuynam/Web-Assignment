@@ -34,6 +34,7 @@ use App\image;
 // Real for Assignmenet 
 Route::controller('/','ViewController');
 Route::post('user/login','ViewController@do_login');
+Route::;
 Route::group(array("prefix"=>"check"),function(){
 	Route::post("check-username",function(){
 		if(User::check_username(Input::get("username")))
