@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{Asset('assets/js/easyautocomplete/easy-autocomplete.themes.min.css')}}"> 
         <link rel="stylesheet" href="{{Asset('assets/js/easyautocomplete/easy-autocomplete.min.css')}}" type="text/css">
         <link rel="stylesheet" href="{{Asset('assets/css/style.css')}}"/>
+        <link rel="stylesheet" href="{{Asset('assets/css/BackToTopBtn.css')}}"/>
         <!-- LINK LOCAL -->
         <!-- 
         <link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link> 
@@ -29,6 +30,7 @@
         <script src = "{{Asset('assets/js/myscript/login_ajax.js')}}"></script>
         <script src = "{{Asset('assets/js/myscript/myjs.js')}}"></script>
         <script src = "{{Asset('assets/js/myscript/register.js')}}"></script>
+        <script src = "{{Asset('assets/js/myscript/backtotop.js')}}"></script>
         <style>
             #carousel-example-generic {
                 background-color : #FAEBD7 ;
@@ -76,6 +78,8 @@
             </div>
         </header>
         <div class="container-fluid" id = "main">
+            <!-- back to top button  -->
+            <a href="#0" class="cd-top">Top</a>
             <!-- Navigation -->
             <div class = "row">
                 <div id = "sticky_navigation">
