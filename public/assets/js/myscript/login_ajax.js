@@ -41,7 +41,7 @@ $(document).ready(function() {
 				// alert("run");
 
 				// }) ;
-				setTimeout(function() {redicrect("/mainlayout");},2000);
+				setTimeout(function() {redicrect("mainlayout");},2000);
 				
 			}
 		 });

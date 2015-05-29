@@ -122,7 +122,21 @@ class ViewController extends Controller {
  	}
 
  	public function getUpdateProfile() {
- 		return View("update-profile");
+ 		if (!Session::has("logined"))
+			return Redirect::to("login");
+ 		else 
+ 			return View("update-profile");
+ 	}
+
+ 	public function postUpdateProfile() {
+ 		$update = array("TEN_THANH_VIEN" => Input::get("TEN_THANH_VIEN"),
+ 						"GIOI_TINH" => Input::get("GIOI_TINH"),
+ 						"TINH_TRANG_HON_NHAN" => Input::get("TINH_TRANG_HON_NHAN"),
+ 						"THANH_PHO/TINH" => Input::get("THANH_PHO/TINH"),
+ 						"QUAN/HUYEN" => Input::get("QUAN/HUYEN"));
+ 		DB::table('THANH_VIEN')->where("user","=",Session::get('user_input'))
+								->orWhere("email","=",Session::get('user_input'))->update($update);
+		echo "Cập nhật thông tin thành công";
  	}
 
  	public function getLogout() {
@@ -225,23 +239,15 @@ class ViewController extends Controller {
 		$baidang = DB::table('BAI_DANG')->where("ma_quan","=",$id)->get();
 		$baidang = json_encode($baidang);
 		$baidang = json_decode($baidang,true);
+
 		$address = $data[0]['DIA_CHI'];
-
-		$address = "67 huỳnh thiện lộc, hòa thạnh, ho chi minh";
-		// $address = "181 phan châu trinh, tam kỳ, việt name";
-		// echo $address."<br>";
         $prepAddr = str_replace(' ','+',$address);
-        // echo $prepAddr."<br>";
-        $address = vn_str_filter($address);
-        echo "$address";
         $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
-        echo "$geocode";
-  //       $output= json_decode($geocode);
-  //       $lat = $output->results[0]->geometry->location->lat;
-  //       $long = $output->results[0]->geometry->location->lng;
-		// return View("details")->with('data',$data)->with('image',$image)->with('baidang',$baidang)->with('lat',$lat)->with('long',$long)->with('address',$address);
+        $output= json_decode($geocode);
+        $lat = $output->results[0]->geometry->location->lat;
+        $long = $output->results[0]->geometry->location->lng;
+		return View("details")->with('data',$data)->with('image',$image)->with('baidang',$baidang)->with('lat',$lat)->with('long',$long)->with('address',$address);
 	}
-
 
 	//View for Admin
 	public function getAdminLogin() {
@@ -259,15 +265,22 @@ class ViewController extends Controller {
  	public function getAdminMainlayout() {
  		if (!Session::has("admin_logined"))
 			return Redirect::to("admin-login");
+ 		else 
+			return View ("admin_mainlayout");
+	}
+
+	public function getAdminThanhvien() {
+ 		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
  		else {
 	 		$user = DB::table('THANH_VIEN')->get();
 	 		$user = json_encode($user);
 			$user = json_decode($user,true);
-			return View ("admin_mainlayout")->with('user',$user);
+			return View ("admin_thanhvien")->with('user',$user);
 		}
 	}
 
-	public function getAdminDelete($id) {
+	public function getAdminDeleteThanhvien($id) {
 		if (!Session::has("admin_logined"))
 			return Redirect::to("admin-login");
  		else {
@@ -275,8 +288,25 @@ class ViewController extends Controller {
 			$user = DB::table('THANH_VIEN')->get();
 	 		$user = json_encode($user);
 			$user = json_decode($user,true);
-			return View ("admin_mainlayout")->with('user',$user);
+			return View ("admin_thanhvien")->with('user',$user);
 		}
+	}
+
+	public function getAdminEditThanhvien($id) {
+		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+		else {
+			$user = DB::table('THANH_VIEN')->where("MA_THANH_VIEN","=",$id)->get();
+			$user = json_encode($user);
+			$user = json_decode($user,true);
+			return View ("admin_edit_thanhvien")->with('user',$user);
+		}
+	}
+
+	public function postAdminEditThanhvien($id) {
+		$update = array("TEN_THANH_VIEN" => Input::get("TEN_THANH_VIEN"));
+ 		DB::table('THANH_VIEN')->where("MA_THANH_VIEN","=",$id)->update($update);
+		echo "Cập nhật thông tin thành công";
 	}
 
 	public function postBaiDang() {
@@ -289,5 +319,79 @@ class ViewController extends Controller {
 		$baidang->MA_QUAN = Input::get("cafe_id");
 		$baidang->NOI_DUNG = Input::get("content");
 		$baidang->save();
+	}
+
+	public function getAdminQuancafe() {
+ 		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+ 		else {
+	 		$quan = DB::table('QUAN_CAFE')->get();
+	 		$quan = json_encode($quan);
+			$quan = json_decode($quan,true);
+			return View ("admin_quancafe")->with('quan',$quan);
+		}
+	}
+
+	public function getAdminDeleteQuancafe($id) {
+		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+ 		else {
+			$quan = DB::table('QUAN_CAFE')->where("MA_QUAN","=",$id)->delete();
+			$quan = DB::table('QUAN_CAFE')->get();
+	 		$quan = json_encode($quan);
+			$quan = json_decode($quan,true);
+			return View ("admin_quancafe")->with('quan',$quan);
+		}
+	}
+
+	public function getAdminEditQuancafe($id) {
+		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+		else {
+			$quan = DB::table('QUAN_CAFE')->where("MA_QUAN","=",$id)->get();
+			$quan = json_encode($quan);
+			$quan = json_decode($quan,true);
+			return View ("admin_edit_quancafe")->with('quan',$quan);
+		}
+	}
+
+	public function postAdminEditQuancafe($id) {
+		$update = array("TEN_QUAN" => Input::get("TEN_QUAN"),
+ 						"DIA_CHI" => Input::get("DIA_CHI"),
+ 						"GIA_THAP_NHAT" => Input::get("GIA_THAP_NHAT"),
+ 						"GIA_CAO_NHAT" => Input::get("GIA_CAO_NHAT"),
+ 						"WIFI" => Input::get("WIFI"),
+ 						"MAY_LANH" => Input::get("MAY_LANH"),
+ 						"CHO_DAU_XE_HOI" => Input::get("CHO_DAU_XE_HOI"),
+ 						"SO_DIEN_THOAI" => Input::get("SO_DIEN_THOAI"),
+ 						"GIO_MO_CUA" => Input::get("GIO_MO_CUA"),
+ 						"GIO_DONG_CUA" => Input::get("GIO_DONG_CUA"),
+ 						"THICH_HOP_CHO_DOI_TUONG" => Input::get("THICH_HOP_CHO_DOI_TUONG"),
+ 						"KHONG_GIAN" => Input::get("KHONG_GIAN"));
+ 		DB::table('QUAN_CAFE')->where("MA_QUAN","=",$id)->update($update);
+		return "Cập nhật thông tin thành công";
+	}
+
+	public function getAdminBaidang() {
+ 		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+ 		else {
+	 		$baidang = DB::table('BAI_DANG')->get();
+	 		$baidang = json_encode($baidang);
+			$baidang = json_decode($baidang,true);
+			return View ("admin_baidang")->with('baidang',$baidang);
+		}
+	}
+
+	public function getAdminDeleteBaidang($id) {
+		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+ 		else {
+			$baidang = DB::table('BAI_DANG')->where("MA_BAI_DANG","=",$id)->delete();
+			$baidang = DB::table('BAI_DANG')->get();
+	 		$baidang = json_encode($baidang);
+			$baidang = json_decode($baidang,true);
+			return View ("admin_baidang")->with('baidang',$baidang);
+		}
 	}
 }

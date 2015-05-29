@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,12 +82,17 @@
             </div>
             <div class = "col-md-7">
                 <form method = "post" action = "{{Asset('bai-dang')}}">
-                     <h1> HELLO </h1>
+                     <h2>Comment </h2>
+                     <input type="hidden" id ="cafe_id" name="cafe_id" value="{{$data[0]['MA_QUAN']}}">
+                     <textarea name="content" id="content" placeholder = "Write your comment to support for everyone better " style = "resize: none" rows = "10" cols = "100">
+                     </textarea>
+                     <br><br>
+                     <button class = "btn btn-primary"type = "submit">Submit</button>
                 </form>
             </div>
         </div>
+        @include("footer")
     </div>
-
     <script>
         var mycenter = new google.maps.LatLng({{$lat}},{{$long}});
         function initialize() {

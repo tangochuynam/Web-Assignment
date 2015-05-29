@@ -52,7 +52,8 @@ Route::filter("check-logined", function(){
 		return Redirect::to("login");
 });
 
-// Route::get("update-profile", array("before"=>"check-logined", function(){
-// 	return View::make("update-profile");
-// }));
+// Route::get('mainlayout', 'ViewController@Mainlayout');
+
+// Route::get('mainlayout-test', 'ViewController@MainlayoutTest');
+
 
