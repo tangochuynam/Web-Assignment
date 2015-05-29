@@ -369,7 +369,7 @@ class ViewController extends Controller {
  						"THICH_HOP_CHO_DOI_TUONG" => Input::get("THICH_HOP_CHO_DOI_TUONG"),
  						"KHONG_GIAN" => Input::get("KHONG_GIAN"));
  		DB::table('QUAN_CAFE')->where("MA_QUAN","=",$id)->update($update);
-		return "Cập nhật thông tin thành công";
+		echo "Cập nhật thông tin thành công";
 	}
 
 	public function getAdminBaidang() {
