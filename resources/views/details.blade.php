@@ -81,7 +81,7 @@
                 <div id='googleMap' style='width:500px;height:400px;'></div>
             </div>
             <div class = "col-md-7">
-                <form method = "post" action = "{{Asset('bai-dang')}}">
+                <form method = "post" action = "{{Asset('bai-dang')}}" class = "pull-left">
                      <h2>Comment </h2>
                      <input type="hidden" id ="cafe_id" name="cafe_id" value="{{$data[0]['MA_QUAN']}}">
                      <textarea name="content" id="content" placeholder = "Write your comment to support for everyone better " style = "resize: none" rows = "10" cols = "100">

@@ -11,6 +11,9 @@ use App\Quan_cafe;
 use App\Admin;
 use App\bai_dang;
 use Response;
+use Illuminate\Pagination\Paginator;
+use Illuminate\Pagination\BootstrapThreePresenter;
+use Illuminate\Support\Collection;
 include(app_path().'/Http/Controllers/simple_html_dom.php');
 class ViewController extends Controller {
 	/*// de goi view trong laravel 5 ta dung view ($view, $data = array(), $mergeData = array())
@@ -218,15 +221,19 @@ class ViewController extends Controller {
 	public function getSearchCafe() {
 		$keyword = Input::get("keyword");
 		$keyword = trim($keyword);
-		$data = DB::table('quan_cafe')->where("ten_quan","like","%$keyword%")
+		$data1 = Quan_cafe::where("ten_quan","like","%$keyword%")
 										->orWhere("dia_chi","like","%$keyword%")->get();
-		$data = json_encode($data);
-		$data = json_decode($data,true);
-		$image = [];
-		for ($i=0; $i < count($data) ; $i++) {
-			$image[$i] = $data[$i]['ANH_DAI_DIEN'];
-		}
-		return View("search-cafe")->with('data',$data)->with('image',$image);
+		$data = Quan_cafe::where("ten_quan","like","%$keyword%")
+										->orWhere("dia_chi","like","%$keyword%")->paginate(1);
+		
+		$data->setPath('');
+		// $data = json_encode($data);
+		// $data = json_decode($data,true);
+		// $image = [];
+		// for ($i=0; $i < count($data) ; $i++) {
+		// 	$image[$i] = $data[$i]['ANH_DAI_DIEN'];
+		// }
+		return View("search-cafe")->with('data',$data)->with('data1',$data1);
 	}
 		// truyen 1 mang qua view voi -> with (ten dai dien de goi o view ben kia, mang truyen vao)
 		
