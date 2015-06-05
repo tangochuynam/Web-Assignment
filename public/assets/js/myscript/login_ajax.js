@@ -24,7 +24,7 @@ $(document).ready(function() {
 				$.each(login_form,function(i,k){
 					$("#" + k.name).val('');
 				});
-			} elprimary
+			} else {
 				$("#fdk").addClass("alert alert-success").fadeIn(500,function(){
 					// $(this).hide();	
 				});

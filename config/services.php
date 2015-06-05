@@ -35,4 +35,10 @@ return [
 		'secret' => '',
 	],
 
+	'Facebook' => [
+        'client_id'     => '1629969347238467',
+        'client_secret' => 'ec12b0b9a46d34681a510cdd36558a73',
+        'redirect' => 'http://localhost/Web-Assignment/public/mainlayout',
+    ]
+
 ];

@@ -19,5 +19,6 @@
 	<p> Bạn chưa có tài khoản hãy <a href="{{Asset('register')}}">Đăng ký</a></p>
 	<button class="btn btn-lg btn-primary btn-block">Đăng nhập</button>
 </form>
+<a href="{!!URL::to('facebook')!!}">Login with Facebook</a>
 
 @endsection
