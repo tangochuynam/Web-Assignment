@@ -21,6 +21,8 @@ $(function(){
                     $(window).scroll(function() {
                          sticky_navigation();
                     });
+
+                    
                 $('#main .img-responsive').lazyload({
                     effect: "fadeIn"
                   });

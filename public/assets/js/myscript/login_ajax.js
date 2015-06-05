@@ -25,7 +25,9 @@ $(document).ready(function() {
 					$("#" + k.name).val('');
 				});
 			} else {
-				$("#fdk").addClass("alert alert-success").fadeIn(500,function(){
+
+				$("#fdk").addClass("alert alert-info").fadeIn(500,function(){
+				
 					// $(this).hide();	
 				});
 				// $("#login_btn").text("LogOut");
