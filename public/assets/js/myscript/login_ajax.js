@@ -26,6 +26,7 @@ $(document).ready(function() {
 				});
 			} else {
 				$("#fdk").addClass("alert alert-info").fadeIn(500,function(){
+				
 					// $(this).hide();	
 				});
 				// $("#login_btn").text("LogOut");
