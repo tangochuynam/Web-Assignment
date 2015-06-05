@@ -14,8 +14,8 @@ use Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\BootstrapThreePresenter;
 use Illuminate\Support\Collection;
-use Redirect;
-use Socialize;
+// use Redirect;
+// use Socialize;
 include(app_path().'/Http/Controllers/simple_html_dom.php');
 class ViewController extends Controller {
 	/*// de goi view trong laravel 5 ta dung view ($view, $data = array(), $mergeData = array())
@@ -404,13 +404,13 @@ class ViewController extends Controller {
 		}
 	}
 
-	public function getFacebook_redirect() {
-    	return Socialize::with('Facebook')->redirect();
-  	}
+	// public function getFacebook_redirect() {
+ //    	return Socialize::with('Facebook')->redirect();
+ //  	}
 
-  	public function getFacebook() {
-	    $user = Socialize::with('Facebook')->user();
-	    // Do your stuff with user data.
-	    print_r($user);die;
-	}
+ //  	public function getFacebook() {
+	//     $user = Socialize::with('Facebook')->user();
+	//     // Do your stuff with user data.
+	//     print_r($user);die;
+	// }
 }
