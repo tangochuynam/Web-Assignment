@@ -35,10 +35,17 @@ return [
 		'secret' => '',
 	],
 
-	'Facebook' => [
-        'client_id'     => '1629969347238467',
-        'client_secret' => 'ec12b0b9a46d34681a510cdd36558a73',
-        'redirect' => 'http://localhost:8000/mainlayout',
-    ]
+
+    'facebook' => [
+        'client_id'     => '379307572272091',
+        'client_secret' => '33e6b49eefa490219a5b12cc41852021',
+        'redirect' => 'http://localhost/Web-Assignment/public/login',
+    ],
+
+    'github' => [
+        'client_id'     => '9a86a405fd6645ab8eb0',
+        'client_secret' => 'd5eecf8489e356d59feca98daf7c0c7ebc9d0abd',
+        'redirect' => 'http://localhost/Web-Assignment/public/login',
+    ],
 
 ];
