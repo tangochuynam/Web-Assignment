@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Validator;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
+// use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\DB;
 use App\User;
 use App\image;
@@ -14,7 +14,7 @@ use Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\BootstrapThreePresenter;
 use Illuminate\Support\Collection;
-// use Redirect;
+use Redirect;
 use Socialize;
 include(app_path().'/Http/Controllers/simple_html_dom.php');
 class ViewController extends Controller {
@@ -30,9 +30,6 @@ class ViewController extends Controller {
 		// return view('app');
 	}
 	//end-TEST
-	public function getFacebook() {
-		return view("Facebook_Login.index");
-	}
 	public function getMainlayout() {
 		$myfile = fopen("test.json", "w") or die("Unable to open file!");
 		$array = DB::select('select * from quan_cafe');
@@ -404,13 +401,13 @@ class ViewController extends Controller {
 		}
 	}
 
-	public function getFacebook_redirect() {
-    	return Socialize::with('Facebook')->redirect();
+	public function getFacebook() {
+    	return Socialize::with('facebook')->redirect();
   	}
 
-  	public function getFacebook() {
-	    $user = Socialize::with('Facebook')->user();
-	    // Do your stuff with user data.
-	    print_r($user);die;
-	}
+ //  	public function getFacebook_redirect() {
+	//     $user = Socialize::with('facebook')->user();
+	//     // Do your stuff with user data.
+	//     print_r($user->getNickname());die;
+	// }
 }
