@@ -14,7 +14,10 @@ use Response;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Pagination\BootstrapThreePresenter;
 use Illuminate\Support\Collection;
+<<<<<<< HEAD
 use Redirect;
+=======
+>>>>>>> 33b1fa21a740133745bce8a46277ec64e4b0208e
 use Socialize;
 include(app_path().'/Http/Controllers/simple_html_dom.php');
 class ViewController extends Controller {
@@ -30,6 +33,10 @@ class ViewController extends Controller {
 		// return view('app');
 	}
 	//end-TEST
+<<<<<<< HEAD
+=======
+
+>>>>>>> 33b1fa21a740133745bce8a46277ec64e4b0208e
 	public function getMainlayout() {
 		$myfile = fopen("test.json", "w") or die("Unable to open file!");
 		$array = DB::select('select * from quan_cafe');
@@ -405,9 +412,38 @@ class ViewController extends Controller {
     	return Socialize::with('facebook')->redirect();
   	}
 
+<<<<<<< HEAD
  //  	public function getFacebook_redirect() {
 	//     $user = Socialize::with('facebook')->user();
 	//     // Do your stuff with user data.
 	//     print_r($user->getNickname());die;
 	// }
+=======
+  	public function getFacebookredirect() {
+  		$code = Input::get('code');
+  		echo $code;
+  		// if (Input::has('code')) {
+	    // $user = \Socialize::with('facebook')->user();
+	    // if (!empty($code)) {
+	    // return Socialize::with('Facebook')->user();
+	    // Do your stuff with user data.
+	    // print_r($user);die;
+	    // dd($user);
+	    // echo "co code";
+		// }
+		// else return Socialize::with('facebook')->redirect();
+		// else echo "khong co code";
+	}
+
+	public function getGithub() {
+    	return Socialize::with('github')->redirect();
+  	}
+
+  	public function getGithubredirect() {
+  		$code = Input::get('code');
+  		// $user = \Socialize::with('github')->user();
+  		echo $code;
+  	}
+
+>>>>>>> 33b1fa21a740133745bce8a46277ec64e4b0208e
 }

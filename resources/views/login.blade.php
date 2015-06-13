@@ -20,5 +20,6 @@
 	<button class="btn btn-lg btn-primary btn-block">Đăng nhập</button>
 </form>
 <a href="{!!URL::to('facebook')!!}">Login with Facebook</a>
+<a href="{!!URL::to('github')!!}">Login with Github</a>
 
 @endsection
