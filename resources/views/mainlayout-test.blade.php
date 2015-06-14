@@ -92,7 +92,7 @@
                                  <li><a href="{{Asset('mainlayout')}}">Homepage</a></li>
                                  <li><a href="{{Asset('mainlayout')}}">Introduction</a></li>
                                  <li><a href="{{Asset('mainlayout')}}">Best Place</a></li>
-                                 <li><a href="{{Asset('mainlayout')}}">Showcase</a></li>
+                                 <li><a href="{{Asset('add-quancafe')}}">Add</a></li>
                                  <!-- nhung dropdown menu vao navbar -->
                                  <li class = "dropdown">
                                     <a data-toggle = "dropdown"href="#">ContactUs<span class = "caret"></span></a>
@@ -219,29 +219,29 @@
                     <h2 class="page-header">Portfolio Heading</h2>
                 </div>
                 
-                @for ($i=count($data)-1; $i > count($data)-10; $i--)
+                
+                @foreach ($datas as $data)
                     <div class="col-md-4">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <h4><i class="fa fa-fw fa-check"></i> {{$data[$i]['TEN_QUAN']}} </h4>
+                                <h4><i class="fa fa-fw fa-check"></i> {{$data['TEN_QUAN']}} </h4>
                             </div>
                             <div class="panel-body">
-                                <a href="{{Asset('details')}}/{{$data[$i]['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 275px; height: 183px' src='{{$image[$i]}}' alt=""></a>
+                                <a href="{{Asset('details')}}/{{$data['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 275px; height: 183px' src='{{$data['ANH_DAI_DIEN']}}' alt=""></a>
                                 <br>
-                                <p> Địa chỉ: {{$data[$i]['DIA_CHI']}} </p>
-                                <p> Thời gian hoạt động: {{$data[$i]['GIO_MO_CUA']}} - {{$data[$i]['GIO_DONG_CUA']}} </p>
-                                <p> Giá: {{$data[$i]['GIA_THAP_NHAT']}} - {{$data[$i]['GIA_CAO_NHAT']}} </p>
-                                <!-- <form method ="get" action="{{Asset('details')}}" id="form-details"> -->
+                                <p> Địa chỉ: {{$data['DIA_CHI']}} </p>
+                                <p> Thời gian hoạt động: {{$data['GIO_MO_CUA']}} - {{$data['GIO_DONG_CUA']}} </p>
+                                <p> Giá: {{$data['GIA_THAP_NHAT']}} - {{$data['GIA_CAO_NHAT']}} </p>
+                                
                                     <button type = "button" class="btn btn-default">Chi tiết</a>
-                                <!-- </form> -->
+                                
                             </div>
                             <div class = "panel-footer"> 
                                 <p>Footer</p> 
                             </div>
                         </div>
                     </div>
-                @endfor
-
+                @endforeach
             </div>
             <!-- /.row -->
             
@@ -258,6 +258,13 @@
                 </div>
             </div>
         </footer> -->
+
+        <div class = "row">
+            <div class = "col-md-5 pull-right">
+            @include("pagination", ['paginator' => $datas])            
+            </div>
+        </div>
+
        @include("footer")
          <!-- Modal -->
            <!--Just move the entire modal outside of the rest of your code, to the very bottom. It doesn't need to be nested in any other element, other than the body. Neu de nested thi no bi show phia sau cac phan tu khac -->
