@@ -264,7 +264,7 @@ class ViewController extends Controller {
 	}
 
 	public function getAddQuancafe() {
-			return View ("add_quancafe");
+		return View ("add_quancafe");
 	}
 
 	public function postAddQuancafe() {
@@ -295,6 +295,19 @@ class ViewController extends Controller {
 			return "Thêm địa điểm thành công";
 		}
 		else return "Thêm địa điểm không thành công";
+	}
+
+	public function postBaiDang() {
+		$user = DB::table('THANH_VIEN')->where("user","=",Session::get("username"))->get();
+		$user = json_encode($user);
+		$user = json_decode($user,true);
+
+		$baidang = new bai_dang();
+		$baidang->MA_THANH_VIEN = $user[0]['MA_THANH_VIEN'];
+		$baidang->MA_QUAN = Input::get("cafe_id");
+		$baidang->NOI_DUNG = Input::get("content");
+		$baidang->save();
+		return Redirect::to("details/".$baidang->MA_QUAN);
 	}
 
 	//View for Admin
@@ -355,18 +368,6 @@ class ViewController extends Controller {
 		$update = array("TEN_THANH_VIEN" => Input::get("TEN_THANH_VIEN"));
  		DB::table('THANH_VIEN')->where("MA_THANH_VIEN","=",$id)->update($update);
 		echo "Cập nhật thông tin thành công";
-	}
-
-	public function postBaiDang() {
-		$user = DB::table('THANH_VIEN')->where("user","=",Session::get("username"))->get();
-		$user = json_encode($user);
-		$user = json_decode($user,true);
-
-		$baidang = new bai_dang();
-		$baidang->MA_THANH_VIEN = $user[0]['MA_THANH_VIEN'];
-		$baidang->MA_QUAN = Input::get("cafe_id");
-		$baidang->NOI_DUNG = Input::get("content");
-		$baidang->save();
 	}
 
 	public function getAdminQuancafe() {

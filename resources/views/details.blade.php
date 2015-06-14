@@ -92,7 +92,17 @@
             </div>
         </div>
 
-        
+        <div>
+            @if (count(App\bai_dang::load_baidang($data[0]['MA_QUAN']) != 0))
+              
+                @foreach(App\bai_dang::load_baidang($data[0]['MA_QUAN']) as $com)
+                <li><b>{{$com['user']}} :</b><br>
+                  {{$com['content']}}
+                </li>
+                @endforeach
+            @else {{Chưa}}
+            @endif
+        </div>
 
         @include("footer")
     </div>
