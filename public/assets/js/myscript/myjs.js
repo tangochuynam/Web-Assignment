@@ -23,7 +23,7 @@ $(function(){
                     });
 
                     
-                $('#main .img-responsive').lazyload({
+                $('.img-responsive').lazyload({
                     effect: "fadeIn"
                   });
                 $('#carousel-example-generic').carousel({

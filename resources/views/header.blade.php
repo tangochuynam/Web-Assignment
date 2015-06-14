@@ -128,13 +128,13 @@
                                 </form>
                                 <form method = "get" action ="{{Asset('search-cafe')}}" class = "navbar-form navbar-right">
                                     <div class = "form-group">
-                                             <input type = "text" class = "form-control" style ="width: 300px;border-top-right-radius: 0px; border-bottom-right-radius:0px;margin-bottom: 0px" id = "search"  placeholder = "Search coffee place" name = "keyword">
+                                             <input type = "text" class = "form-control" style ="width: 300px;margin-bottom: 0px" id = "search"  placeholder = "Search coffee place" name = "keyword">
                                         <!--<input type = "submit" class = "btn btn-success" value= "Search" > -->
                                     </div>
                                     
                                     <div class = "form-group">
                                         <span >
-                                             <button style="margin-left: -10px; border-top-radius: 0px; border-bottom-radius: 0px;" class = "btn btn-default"><span class = "glyphicon glyphicon-search"></span></button>  
+                                             <button style="color:#8B4513" class = "btn btn-default"><span class = "glyphicon glyphicon-search"></span></button>  
                                          </span>
                                     </div>
                                 

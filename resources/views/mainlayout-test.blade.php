@@ -222,25 +222,32 @@
                 
                 @foreach ($datas as $data)
                     <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4><i class="fa fa-fw fa-check"></i> {{$data['TEN_QUAN']}} </h4>
-                            </div>
-                            <div class="panel-body">
-                                <a href="{{Asset('details')}}/{{$data['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 275px; height: 183px' src='{{$data['ANH_DAI_DIEN']}}' alt=""></a>
-                                <br>
-                                <p> Địa chỉ: {{$data['DIA_CHI']}} </p>
-                                <p> Thời gian hoạt động: {{$data['GIO_MO_CUA']}} - {{$data['GIO_DONG_CUA']}} </p>
-                                <p> Giá: {{$data['GIA_THAP_NHAT']}} - {{$data['GIA_CAO_NHAT']}} </p>
-                                
+                            <div class="panel panel-default">
+                                  <div style = "height:70px" class="panel-heading">
+                                        <h4><i class="fa fa-fw fa-check"></i> {{$data['TEN_QUAN']}} </h4>
+                                    </div>
+                                <div style = "height: 350px" class="panel-body">
+                                    <a href="{{Asset('details')}}/{{$data['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 300px; height: 183px;margin-left:30px' data-original='{{$data['ANH_DAI_DIEN']}}' alt="">
+                                    </a>
+                                    <br>
+                                    <div style = "overflow:hidden; max-width:400px; max-height:25px">
+                                        <p > Địa chỉ: {{$data['DIA_CHI']}} </p>
+                                    </div>
+                                    <div style = "overflow:hidden; max-width:400px;max-height:25px">
+                                        <p> Thời gian hoạt động: {{$data['GIO_MO_CUA']}} - {{$data['GIO_DONG_CUA']}}
+                                         </p>
+                                    </div>
+                                    <div style = "overflow:hidden; max-width:400px;max-height:25px">
+                                        <p> Giá: {{$data['GIA_THAP_NHAT']}} - {{$data['GIA_CAO_NHAT']}} </p>
+                                    </div> 
                                     <button type = "button" class="btn btn-default">Chi tiết</a>
-                                
+                                 </div>
+                                 <div style = "height:50px" class = "panel-footer"> 
+                                        <p>Footer</p> 
+                                </div>
                             </div>
-                            <div class = "panel-footer"> 
-                                <p>Footer</p> 
-                            </div>
+                                  
                         </div>
-                    </div>
                 @endforeach
             </div>
             <!-- /.row -->
