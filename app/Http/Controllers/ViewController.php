@@ -32,7 +32,7 @@ class ViewController extends Controller {
 
 	public function getMainlayout() {
 		$myfile = fopen("test.json", "w") or die("Unable to open file!");
-		$array = DB::select('select * from quan_cafe');
+		$array = DB::table('quan_cafe')->where("XAC_NHAN_CUA_ADMIN","!=",0)->get();
 		$txt = json_encode($array);
 		fwrite($myfile, $txt);
 		fclose($myfile);
@@ -40,18 +40,20 @@ class ViewController extends Controller {
 	}
 	public function getMainlayoutTest() {
 		$myfile = fopen("test.json", "w") or die("Unable to open file!");
-		$array = DB::select('select * from quan_cafe');
+		$array = DB::table('quan_cafe')->where("XAC_NHAN_CUA_ADMIN","!=",0)->get();
 		$txt = json_encode($array);
 		fwrite($myfile, $txt);
 		fclose($myfile);
-		$data = DB::table('quan_cafe')->where("ANH_DAI_DIEN","!=","NULL")->get();
-		$data = json_encode($data);
-		$data = json_decode($data,true);
-		$image = [];
-		for($i = 0; $i < count($data); $i++) {
-			$image[$i] = $data[$i]['ANH_DAI_DIEN'];
-		}
-		return View('mainlayout-test')->with('data',$data)->with('image',$image);
+		$datas = Quan_cafe::where("XAC_NHAN_CUA_ADMIN","!=",0)->where("ANH_DAI_DIEN","!=","NULL")->orderBy("MA_QUAN","desc")->paginate(9);
+		// $data = DB::table('quan_cafe')->where("XAC_NHAN_CUA_ADMIN","!=",0)->where("ANH_DAI_DIEN","!=","NULL")->get();
+		$datas->setPath('');
+		// $data = json_encode($data);
+		// $data = json_decode($data,true);
+		// $image = [];
+		// for($i = 0; $i < count($data); $i++) {
+		// 	$image[$i] = $data[$i]['ANH_DAI_DIEN'];
+		// }
+		return View('mainlayout-test')->with('datas',$datas)/*->with('image',$image)*/;
 	}
 
 	public function postDoLogin() {
@@ -220,19 +222,19 @@ class ViewController extends Controller {
 	public function getSearchCafe() {
 		$keyword = Input::get("keyword");
 		$keyword = trim($keyword);
-		$data1 = Quan_cafe::where("ten_quan","like","%$keyword%")
-										->orWhere("dia_chi","like","%$keyword%")->get();
-		$data = Quan_cafe::where("ten_quan","like","%$keyword%")
-										->orWhere("dia_chi","like","%$keyword%")->paginate(1);
+		$data = Quan_cafe::where("XAC_NHAN_CUA_ADMIN","!=",0)->where("ten_quan","like","%$keyword%")
+						->orWhere("XAC_NHAN_CUA_ADMIN","!=",0)->where("dia_chi","like","%$keyword%")->get();
+		// $data = Quan_cafe::where("ten_quan","like","%$keyword%")
+		// 													->orWhere("dia_chi","like","%$keyword%")->paginate(1);
 		
-		$data->setPath('');
+		// $data->setPath('search-cafe?keyword='.$keyword);
 		// $data = json_encode($data);
 		// $data = json_decode($data,true);
 		// $image = [];
 		// for ($i=0; $i < count($data) ; $i++) {
 		// 	$image[$i] = $data[$i]['ANH_DAI_DIEN'];
 		// }
-		return View("search-cafe")->with('data',$data)->with('data1',$data1);
+		return View("search-cafe")->with('data',$data);
 	}
 		// truyen 1 mang qua view voi -> with (ten dai dien de goi o view ben kia, mang truyen vao)
 		
@@ -250,9 +252,50 @@ class ViewController extends Controller {
         $prepAddr = str_replace(' ','+',$address);
         $geocode=file_get_contents('http://maps.google.com/maps/api/geocode/json?address='.$prepAddr.'&sensor=false');
         $output= json_decode($geocode);
-        $lat = $output->results[0]->geometry->location->lat;
-        $long = $output->results[0]->geometry->location->lng;
+        if($geocode != NULL) {
+		    $lat = $output->results[0]->geometry->location->lat;
+		    $long = $output->results[0]->geometry->location->lng;
+		}
+		else {
+	        $lat = 0;
+	        $long = 0;
+	        $address = "Error network";
+	    }
 		return View("details")->with('data',$data)->with('image',$image)->with('baidang',$baidang)->with('lat',$lat)->with('long',$long)->with('address',$address);
+	}
+
+	public function getAddQuancafe() {
+			return View ("add_quancafe");
+	}
+
+	public function postAddQuancafe() {
+		$rules=array(
+		"ten_quan"=>"required",
+		"dia_chi"=>"required");		
+		if(!Validator::make(Input::all(),$rules)->fails()){
+			$name = Input::file('ANH_DAI_DIEN')->getClientOriginalName();
+			$destinationPath = 'coffee_IMG';
+			Input::file('ANH_DAI_DIEN')->move($destinationPath, $name);
+			// $destinationPath1 = 'details/coffee_IMG';
+			// Input::file('ANH_DAI_DIEN')->move($destinationPath1, $name);
+			$quan_cafe=new Quan_cafe();
+			$quan_cafe->ten_quan=Input::get("ten_quan");
+			$quan_cafe->dia_chi=Input::get("dia_chi");
+			$quan_cafe->gia_thap_nhat=Input::get("gia_thap_nhat");
+			$quan_cafe->gia_cao_nhat=Input::get("gia_cao_nhat");
+			$quan_cafe->wifi=Input::get("wifi");
+			$quan_cafe->may_lanh=Input::get("may_lanh");
+			$quan_cafe->cho_dau_xe_hoi=Input::get("cho_dau_xe_hoi");
+			$quan_cafe->so_dien_thoai=Input::get("so_dien_thoai");
+			$quan_cafe->gio_mo_cua=Input::get("gio_mo_cua");
+			$quan_cafe->gio_dong_cua=Input::get("gio_dong_cua");
+			$quan_cafe->thich_hop_cho_doi_tuong=Input::get("thich_hop_cho_doi_tuong");
+			$quan_cafe->khong_gian=Input::get("khong_gian");
+			$quan_cafe->ANH_DAI_DIEN="coffee_IMG/".$name;
+			$quan_cafe->save();
+			return "Thêm địa điểm thành công";
+		}
+		else return "Thêm địa điểm không thành công";
 	}
 
 	//View for Admin
@@ -378,6 +421,57 @@ class ViewController extends Controller {
 		echo "Cập nhật thông tin thành công";
 	}
 
+	public function getAdminCheckQuancafe($id) {
+		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+		else {
+			$update = array("XAC_NHAN_CUA_ADMIN" => "1");
+			DB::table('QUAN_CAFE')->where("MA_QUAN","=",$id)->update($update);
+			$quan = DB::table('QUAN_CAFE')->get();
+	 		$quan = json_encode($quan);
+			$quan = json_decode($quan,true);
+			return View ("admin_quancafe")->with('quan',$quan);
+		}
+	}
+
+	public function getAdminAddQuancafe() {
+		if (!Session::has("admin_logined"))
+			return Redirect::to("admin-login");
+		else {
+			return View ("admin_add_quancafe");
+		}
+	}
+
+	public function postAdminAddQuancafe() {
+		$rules=array(
+		"ten_quan"=>"required",
+		"dia_chi"=>"required");		
+		if(!Validator::make(Input::all(),$rules)->fails()){
+			$name = Input::file('ANH_DAI_DIEN')->getClientOriginalName();
+			$destinationPath = 'coffee_IMG';
+			Input::file('ANH_DAI_DIEN')->move($destinationPath, $name);
+			Input::file('ANH_DAI_DIEN')->move('details', $name);
+			$quan_cafe=new Quan_cafe();
+			$quan_cafe->ten_quan=Input::get("ten_quan");
+			$quan_cafe->dia_chi=Input::get("dia_chi");
+			$quan_cafe->gia_thap_nhat=Input::get("gia_thap_nhat");
+			$quan_cafe->gia_cao_nhat=Input::get("gia_cao_nhat");
+			$quan_cafe->wifi=Input::get("wifi");
+			$quan_cafe->may_lanh=Input::get("may_lanh");
+			$quan_cafe->cho_dau_xe_hoi=Input::get("cho_dau_xe_hoi");
+			$quan_cafe->so_dien_thoai=Input::get("so_dien_thoai");
+			$quan_cafe->gio_mo_cua=Input::get("gio_mo_cua");
+			$quan_cafe->gio_dong_cua=Input::get("gio_dong_cua");
+			$quan_cafe->thich_hop_cho_doi_tuong=Input::get("thich_hop_cho_doi_tuong");
+			$quan_cafe->khong_gian=Input::get("khong_gian");
+			$quan_cafe->ANH_DAI_DIEN="coffee_IMG/".$name;
+			$quan_cafe->XAC_NHAN_CUA_ADMIN=1;
+			$quan_cafe->save();
+			return "Thêm địa điểm thành công";
+		}
+		else return "Thêm địa điểm không thành công";
+	}
+
 	public function getAdminBaidang() {
  		if (!Session::has("admin_logined"))
 			return Redirect::to("admin-login");
@@ -402,12 +496,23 @@ class ViewController extends Controller {
 	}
 
 	public function getFacebook() {
-    	return Socialize::with('facebook')->redirect();
+		// $code = Input::get('code');
+  // 		echo $code;
+    	$fb = Socialize::with('facebook');
+    	if (Input::has('code')) {
+    		$user = $fb->user();
+    		// return var_dump($user);
+    	}
+    	else return $fb->redirect();
   	}
 
   	public function getFacebookredirect() {
-  		$code = Input::get('code');
-  		echo $code;
+  		// $code = Input::get('code');
+  		// echo $code;
+  		$fb = \Socialize::with('facebook');
+    		$user = $fb->user();
+    		print_r($user);
+    	// else return $fb->redirect();
   		// if (Input::has('code')) {
 	    // $user = \Socialize::with('facebook')->user();
 	    // if (!empty($code)) {
@@ -427,7 +532,9 @@ class ViewController extends Controller {
 
   	public function getGithubredirect() {
   		$code = Input::get('code');
-  		// $user = \Socialize::with('github')->user();
+  		$user = Socialize::with('github')->user();
+  		print_r($user);
+  		// return var_dump($user);
   		echo $code;
   	}
 

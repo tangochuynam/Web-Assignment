@@ -23,8 +23,14 @@ Admin Page - Quán cafe
         			<td>{{$quan[$i]['MA_QUAN']}}</td>
 				    <td>{{$quan[$i]['TEN_QUAN']}}</td>
 				    <td>{{$quan[$i]['DIA_CHI']}}</td>		
-				    <td> <a href="{{Asset('admin-delete-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Delete</a> <a href="{{Asset('admin-edit-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Edit</a> </td>    
+				    <td> @if ($quan[$i]['XAC_NHAN_CUA_ADMIN'] == 0)
+                        <a href="{{Asset('admin-delete-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Delete</a> <a href="{{Asset('admin-edit-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Edit</a> <a href="{{Asset('admin-check-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Check</a>
+                        @else 
+                        <a href="{{Asset('admin-delete-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Delete</a> <a href="{{Asset('admin-edit-quancafe')}}/{{$quan[$i]['MA_QUAN']}}" class = "btn btn-success" >Edit</a>                        
+                        @endif
+                    </td>    
 		  		</tr>		
         	@endfor	    
 		</table>
+        <a href="{{Asset('admin-add-quancafe')}}" class = "btn btn-success" >Add</a>
 @endsection

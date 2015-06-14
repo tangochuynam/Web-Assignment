@@ -11,7 +11,7 @@
     @if ($data == NULL)
         <h3><center> Không tìm thấy dữ liệu </h3>
     @endif
-    <h3 style = "margin-left: 50px; color: red"> {{count($data1)}} kết quả: </h3>
+    <h3 style = "margin-left: 50px; color: red"> {{count($data)}} kết quả: </h3>
     <div class = "row">
     @foreach ($data as $datas)
         <div class="col-md-4">
@@ -34,14 +34,7 @@
         </div>
     @endforeach
     </div>
-    <div class = "row">
-        <div class = "col-md-5 pull-right">
-        <!-- dung voi phuong thuc paginate ben ViewController-->
-        @include("pagination", ['paginator' => $data]) 
-        <!-- dung voi phuong thuc simplePaginate ben ViewController-->
-        <!-- {!!$data->render()!!} -->
-        </div>
-    </div>
+    
     <script>
     $(function() {      
           $('.img-responsive').lazyload({

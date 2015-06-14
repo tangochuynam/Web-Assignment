@@ -92,7 +92,7 @@
                                  <li><a href="{{Asset('mainlayout')}}">Homepage</a></li>
                                  <li><a href="{{Asset('mainlayout')}}">Introduction</a></li>
                                  <li><a href="{{Asset('mainlayout')}}">Best Place</a></li>
-                                 <li><a href="{{Asset('mainlayout')}}">Showcase</a></li>
+                                 <li><a href="{{Asset('add-quancafe')}}">Add</a></li>
                                  <!-- nhung dropdown menu vao navbar -->
                                  <li class = "dropdown">
                                     <a data-toggle = "dropdown"href="#">ContactUs<span class = "caret"></span></a>
