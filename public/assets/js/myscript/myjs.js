@@ -43,7 +43,10 @@ $(function(){
                     template: {
                         type: "custom",
                         method: function(value, item) {
-                            return "<img style = 'width: 50px; height: 40px; float: left' src = '" + "  "+ item.ANH_DAI_DIEN +"'/> "+value+"<br>" +"  " +item.DIA_CHI; 
+                            return "<div>"+
+                            "<div style = 'float:left'><img style = 'width: 50px; height: 40px' src = '" + item.ANH_DAI_DIEN + "'></div>" +
+                            "<div>"+value + "<br>" + item.DIA_CHI + "</div>"+ 
+                            "</div>";
                         }
                     },
                     list: {
