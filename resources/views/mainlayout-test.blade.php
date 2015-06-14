@@ -38,13 +38,13 @@
                 overflow-x: hidden;
             }
             .modal-header, .close {
-                 background-color: #00CC66;
+                 background-color: #DEB887;
                 color:white !important;
                 text-align: center;
                 font-size: 30px;
             }
             .modal-footer {
-                background-color: #00CC66;
+                background-color: #DEB887;
 
             } 
             .btn-success {
@@ -288,7 +288,7 @@
                                          <label><input type="checkbox" value="" checked>Remember me</label>
                                      </div>
                                      <!-- type = submit : goi thang len server, type = button: dung ajax -->
-                                     <button type="button" class="btn btn-success" style = "background-color: #00CC66" id = "sign_in" ><span class="glyphicon glyphicon-off"></span> Login</button> 
+                                     <button type="button" class="btn btn-success" style = "background-color: #DEB887" id = "sign_in" ><span class="glyphicon glyphicon-off"></span> Login</button> 
                                 </form>
                           </div>
                           <div class="modal-footer">
@@ -332,7 +332,7 @@
                                         <input type="email" class="form-control" id="email_1" name="email_1" placeholder="Enter email">
                                      </div>
                                      <!-- type = submit : goi thang len server, type = button: dung ajax -->
-                                     <button style = "background-color: #00CC66"class="btn btn-success" id = "register" ><span class="glyphicon glyphicon-off"></span>Register</button> 
+                                     <button style = "background-color: #DEB887"class="btn btn-success" id = "register" ><span class="glyphicon glyphicon-off"></span>Register</button> 
                                 </form>
                           </div>
                           <div class="modal-footer">
