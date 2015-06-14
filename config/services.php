@@ -36,11 +36,13 @@ return [
 	],
 
 
+
     'facebook' => [
         'client_id'     => '379307572272091',
         'client_secret' => '33e6b49eefa490219a5b12cc41852021',
         'redirect' => 'http://localhost/Web-Assignment/public/facebookredirect',
     ],
+
 
     'github' => [
         'client_id'     => '9a86a405fd6645ab8eb0',

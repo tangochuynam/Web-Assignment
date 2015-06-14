@@ -29,7 +29,6 @@ class ViewController extends Controller {
 		// return view('app');
 	}
 	//end-TEST
-
 	public function getMainlayout() {
 		$myfile = fopen("test.json", "w") or die("Unable to open file!");
 		$array = DB::table('quan_cafe')->where("XAC_NHAN_CUA_ADMIN","!=",0)->get();
@@ -507,11 +506,9 @@ class ViewController extends Controller {
   	}
 
   	public function getFacebookredirect() {
+
   		// $code = Input::get('code');
   		// echo $code;
-  		$fb = \Socialize::with('facebook');
-    		$user = $fb->user();
-    		print_r($user);
     	// else return $fb->redirect();
   		// if (Input::has('code')) {
 	    // $user = \Socialize::with('facebook')->user();
@@ -524,6 +521,14 @@ class ViewController extends Controller {
 		// }
 		// else return Socialize::with('facebook')->redirect();
 		// else echo "khong co code";
+
+  			// echo Input::get("code")."<br>";
+  			// echo Input::get("state");
+		    $user = \Socialize::with('facebook')->user();
+		    print_r($user);
+		    die;
+		
+
 	}
 
 	public function getGithub() {
@@ -537,5 +542,4 @@ class ViewController extends Controller {
   		// return var_dump($user);
   		echo $code;
   	}
-
 }
