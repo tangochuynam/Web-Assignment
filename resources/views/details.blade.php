@@ -73,7 +73,7 @@
                 <td>{{$data[0]['CHO_DAU_XE_HOI']}}</td>
             </tr>
                 </tbody>
-                </table>    
+                </table>   
             </div>
         </div>
         <div class = "row">
@@ -91,18 +91,26 @@
                 </form>
             </div>
         </div>
-
         <div>
-            @if (count(App\bai_dang::load_baidang($data[0]['MA_QUAN']) != 0))
-              
-                @foreach(App\bai_dang::load_baidang($data[0]['MA_QUAN']) as $com)
-                <li><b>{{$com['user']}} :</b><br>
-                  {{$com['content']}}
-                </li>
-                @endforeach
-            @else {{Chưa}}
-            @endif
+          <div class = "row">
+            <div class = "col-md-5"></div>
+            <div class = "col-md-7">
+               <div class = "pull-left">
+                  @if (count(App\bai_dang::load_baidang($data[0]['MA_QUAN']) != 0))
+                    
+                      @foreach(App\bai_dang::load_baidang($data[0]['MA_QUAN']) as $com)
+                      <li><b>{{$com['user']}} :</b><br>
+                        {{$com['content']}}
+                      </li>
+                      @endforeach
+                  @else {{Chưa}}
+                  @endif
+                </div> 
+            </div>
+          </div>
         </div>
+
+        
 
         @include("footer")
     </div>
