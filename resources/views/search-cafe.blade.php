@@ -5,7 +5,7 @@
 
 </head>
 <body> 
-
+    <div class = "container-fluid">
     @include("header")
     
     @if ($data == NULL)
@@ -41,6 +41,8 @@
     @endforeach
     </div>
     @include("footer")
+    </div>
+
     <script>
     $(function() {      
           $('.img-responsive').lazyload({

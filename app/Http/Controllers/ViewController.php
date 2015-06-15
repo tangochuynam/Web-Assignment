@@ -144,7 +144,7 @@ class ViewController extends Controller {
 
  	public function getLogout() {
  		Session::forget("username");
-		return Redirect::to("mainlayout");
+		return Redirect::to("mainlayout-test");
  	}
 
 
@@ -264,7 +264,12 @@ class ViewController extends Controller {
 	}
 
 	public function getAddQuancafe() {
-		return View ("add_quancafe");
+		if (Session::has("username")) {
+			return View ("add_quancafe");
+		}
+		else {
+			return View("login_request");
+		}
 	}
 
 	public function postAddQuancafe() {
@@ -298,16 +303,21 @@ class ViewController extends Controller {
 	}
 
 	public function postBaiDang() {
-		$user = DB::table('THANH_VIEN')->where("user","=",Session::get("username"))->get();
-		$user = json_encode($user);
-		$user = json_decode($user,true);
+		if (Session::has("username")) {
+			$user = DB::table('THANH_VIEN')->where("user","=",Session::get("username"))->get();
+			$user = json_encode($user);
+			$user = json_decode($user,true);
 
-		$baidang = new bai_dang();
-		$baidang->MA_THANH_VIEN = $user[0]['MA_THANH_VIEN'];
-		$baidang->MA_QUAN = Input::get("cafe_id");
-		$baidang->NOI_DUNG = Input::get("content");
-		$baidang->save();
-		return Redirect::to("details/".$baidang->MA_QUAN);
+			$baidang = new bai_dang();
+			$baidang->MA_THANH_VIEN = $user[0]['MA_THANH_VIEN'];
+			$baidang->MA_QUAN = Input::get("cafe_id");
+			$baidang->NOI_DUNG = Input::get("content");
+			$baidang->save();
+			return Redirect::to("details/".$baidang->MA_QUAN);
+		}
+		else {
+			return View("login_request");
+		}
 	}
 
 	//View for Admin
@@ -400,11 +410,15 @@ class ViewController extends Controller {
 			$quan = DB::table('QUAN_CAFE')->where("MA_QUAN","=",$id)->get();
 			$quan = json_encode($quan);
 			$quan = json_decode($quan,true);
-			return View ("admin_edit_quancafe")->with('quan',$quan);
+			$anh = $quan[0]['ANH_DAI_DIEN'];
+			return View ("admin_edit_quancafe")->with('quan',$quan)->with('anh',$anh);
 		}
 	}
 
 	public function postAdminEditQuancafe($id) {
+		// $name = Input::file('ANH_DAI_DIEN')->getClientOriginalName();
+		// if ($name == NULL) $name1 = "coffee_IMG/".$name;
+		// else $name1 = "coffee_IMG/".$name;
 		$update = array("TEN_QUAN" => Input::get("TEN_QUAN"),
  						"DIA_CHI" => Input::get("DIA_CHI"),
  						"GIA_THAP_NHAT" => Input::get("GIA_THAP_NHAT"),
