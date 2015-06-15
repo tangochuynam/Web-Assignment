@@ -9,6 +9,7 @@
         <link rel="stylesheet" href="{{Asset('assets/js/easyautocomplete/easy-autocomplete.themes.min.css')}}"> 
         <link rel="stylesheet" href="{{Asset('assets/js/easyautocomplete/easy-autocomplete.min.css')}}" type="text/css">
         <link rel="stylesheet" href="{{Asset('assets/css/style.css')}}"/>
+        <link rel="stylesheet" href="{{Asset('assets/css/BackToTopBtn.css')}}"/>
         <!-- LINK LOCAL -->
         <!-- 
         <link rel="stylesheet" type="text/css" href="bootstrap.min.css"></link> 
@@ -29,6 +30,7 @@
         <script src = "{{Asset('assets/js/myscript/login_ajax.js')}}"></script>
         <script src = "{{Asset('assets/js/myscript/myjs.js')}}"></script>
         <script src = "{{Asset('assets/js/myscript/register.js')}}"></script>
+        <script src = "{{Asset('assets/js/myscript/backtotop.js')}}"></script>
         <style>
             #carousel-example-generic {
                 background-color : #FAEBD7 ;
@@ -70,6 +72,7 @@
             </div>
         </header>
         <div class="container-fluid" id = "main">
+            <a href="#0" class="cd-top">Top</a>
             <!-- Navigation -->
             <div class = "row">
                 <div id = "sticky_navigation">
@@ -171,7 +174,7 @@
                                 <div class="carousel-caption">
                                     <img src="images/slide-img.png" alt="First Item" style = "float:left">
                                     <h2 style = "color: #FF9031">Amazing Coffee <br />&amp; Delicious Cupcakes</h2>
-                                    <p style = "color: #828282">Vivamus ultrices tincidunt eros, sed sollicitudin est condimentum quis. Nulla a purus sit amet enim tincidunt varius vel a libero. Aenean neque dolor, tristique eu fermentum quis, imperdiet tincidunt ligula. Ut ut est erat, eget tempor odio vestibulum sed diam orci, vel mattis purus. Donec faucibus neque eu turpis imperdiet commodo. </p>
+                                    <p style = "color: #828282"> Hãy đến và thưởng thức những ly cafe thơm ngon từ những quán cafe nổi tiếng trong TPHCM. Cùng chia sẻ cho cộng đồng những địa điểm đặc biệt mà bạn đã đến để mọi người có thể cùng nhau tận hưởng những giây phút thăng hoa tuyệt vời bên bạn bè và người thân! </p>
                                     <a href="#" class="btn btn-primary" role = "button">Find Out More!</a>
                                 </div>
                         </div>
@@ -181,7 +184,7 @@
                                 <div class="carousel-caption">
                                     <img src="images/slide-img2.png" alt="Second Item" style = "float:left">
                                     <h2 style = "color: #FF9031">Amazing Coffee <br />&amp;  Delicious Cupcakes</h2>
-                                    <p style = "color: #828282">Vivamus ultrices tincidunt eros, sed sollicitudin est condimentum quis. Nulla a purus sit amet enim tincidunt varius vel a libero. Aenean neque dolor, tristique eu fermentum quis, imperdiet tincidunt ligula. Ut ut est erat, eget tempor odio vestibulum sed diam orci, vel mattis purus. Donec faucibus neque eu turpis imperdiet commodo. </p>
+                                    <p style = "color: #828282">Hãy đến và thưởng thức những ly cafe thơm ngon từ những quán cafe nổi tiếng trong TPHCM. Cùng chia sẻ cho cộng đồng những địa điểm đặc biệt mà bạn đã đến để mọi người có thể cùng nhau tận hưởng những giây phút thăng hoa tuyệt vời bên bạn bè và người thân!  </p>
                                     <a href="#" class="btn btn-primary" role = "button">Find Out More!</a>
                                </div>
                         </div>
@@ -190,7 +193,7 @@
                                 <div class="carousel-caption">
                                     <img src="images/slide-img3.png" alt="Third Item" style = "float:left"  >
                                     <h2 style = "color: #FF9031">Amazing Coffee <br />&amp;  Delicious Cupcakes</h2>
-                                    <p style = "color: #828282" >Vivamus ultrices tincidunt eros, sed sollicitudin est condimentum quis. Nulla a purus sit amet enim tincidunt varius vel a libero. Aenean neque dolor, tristique eu fermentum quis, imperdiet tincidunt ligula. Ut ut est erat, eget tempor odio vestibulum sed diam orci, vel mattis purus. Donec faucibus neque eu turpis imperdiet commodo. </p>
+                                    <p style = "color: #828282" >Hãy đến và thưởng thức những ly cafe thơm ngon từ những quán cafe nổi tiếng trong TPHCM. Cùng chia sẻ cho cộng đồng những địa điểm đặc biệt mà bạn đã đến để mọi người có thể cùng nhau tận hưởng những giây phút thăng hoa tuyệt vời bên bạn bè và người thân! </p>
                                     <a href="#" class="btn btn-primary" role = "button">Find Out More!</a>
                                 </div>
                         </div>
@@ -216,7 +219,7 @@
             <!-- Portfolio Section -->
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-header">Portfolio Heading</h2>
+                    <h2 class="page-header">Các quán mới nhất</h2>
                 </div>
                 
                 

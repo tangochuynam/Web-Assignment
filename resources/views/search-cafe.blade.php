@@ -5,7 +5,7 @@
 
 </head>
 <body> 
-
+    <div class = "container-fluid">
     @include("header")
     
     @if ($data == NULL)
@@ -33,6 +33,9 @@
             </div>
         </div>
     @endforeach
+    </div>
+
+    @include("footer")
     </div>
     
     <script>

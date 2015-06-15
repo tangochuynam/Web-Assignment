@@ -100,7 +100,8 @@
                   {{$com['content']}}
                 </li>
                 @endforeach
-            @else {{Chưa}}
+            
+            @else <p> Chưa có bình luận nào </p>
             @endif
         </div>
 
