@@ -41,13 +41,13 @@
                 overflow-x: hidden;
             }
             .modal-header, .close {
-                 background-color: #00CC66;
+                 background-color: #DEB887;
                 color:white !important;
                 text-align: center;
                 font-size: 30px;
             }
             .modal-footer {
-                background-color: #00CC66;
+                background-color: #DEB887;
 
             } 
             .btn-success {
@@ -132,13 +132,13 @@
                                 </form>
                                 <form method = "get" action ="{{Asset('search-cafe')}}" class = "navbar-form navbar-right">
                                     <div class = "form-group">
-                                             <input type = "text" class = "form-control" style ="width: 300px;border-top-right-radius: 0px; border-bottom-right-radius:0px;margin-bottom: 0px" id = "search"  placeholder = "Search coffee place" name = "keyword">
+                                             <input type = "text" class = "form-control" style ="width: 300px;margin-bottom: 0px" id = "search"  placeholder = "Search coffee place" name = "keyword">
                                         <!--<input type = "submit" class = "btn btn-success" value= "Search" > -->
                                     </div>
                                     
                                     <div class = "form-group">
                                         <span >
-                                             <button style="margin-left: -10px; border-top-radius: 0px; border-bottom-radius: 0px;" class = "btn btn-default"><span class = "glyphicon glyphicon-search"></span></button>  
+                                             <button style="color:#8B4513" class = "btn btn-default"><span class = "glyphicon glyphicon-search"></span></button>  
                                          </span>
                                     </div>
                                 
@@ -188,7 +188,7 @@
                                          <label><input type="checkbox" value="" checked>Remember me</label>
                                      </div>
                                      <!-- type = submit : goi thang len server, type = button: dung ajax -->
-                                     <button type="button" class="btn btn-success" style = "background-color: #00CC66" id = "sign_in" ><span class="glyphicon glyphicon-off"></span> Login</button> 
+                                     <button type="button" class="btn btn-success" style = "border-color: #DEB887;background-color: #DEB887" id = "sign_in" ><span class="glyphicon glyphicon-off"></span> Login</button> 
                                 </form>
                           </div>
                           <div class="modal-footer">
@@ -232,7 +232,7 @@
                                         <input type="email" class="form-control" id="email_1" name="email_1" placeholder="Enter email">
                                      </div>
                                      <!-- type = submit : goi thang len server, type = button: dung ajax -->
-                                     <button style = "background-color: #00CC66"class="btn btn-success" id = "register" ><span class="glyphicon glyphicon-off"></span>Register</button> 
+                                     <button style = "border-color: #DEB887;background-color: #DEB887"class="btn btn-success" id = "register" ><span class="glyphicon glyphicon-off"></span>Register</button> 
                                 </form>
                           </div>
                           <div class="modal-footer">

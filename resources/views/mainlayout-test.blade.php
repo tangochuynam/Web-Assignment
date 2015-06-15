@@ -72,6 +72,8 @@
             </div>
         </header>
         <div class="container-fluid" id = "main">
+            <!-- back to top button  -->
+
             <a href="#0" class="cd-top">Top</a>
             <!-- Navigation -->
             <div class = "row">
@@ -131,13 +133,13 @@
                                 </form>
                                 <form method = "get" action ="{{Asset('search-cafe')}}" class = "navbar-form navbar-right">
                                     <div class = "form-group">
-                                             <input type = "text" class = "form-control" style ="width: 300px;border-top-right-radius: 0px; border-bottom-right-radius:0px;margin-bottom: 0px" id = "search"  placeholder = "Search coffee place" name = "keyword">
+                                             <input type = "text" class = "form-control" style ="width: 300px;margin-bottom: 0px" id = "search"  placeholder = "Search coffee place" name = "keyword">
                                         <!--<input type = "submit" class = "btn btn-success" value= "Search" > -->
                                     </div>
                                     
                                     <div class = "form-group">
                                         <span >
-                                             <button style="margin-left: -10px; border-top-radius: 0px; border-bottom-radius: 0px;" class = "btn btn-default"><span class = "glyphicon glyphicon-search"></span></button>  
+                                             <button style="color:#8B4513" class = "btn btn-default"><span class = "glyphicon glyphicon-search"></span></button>  
                                          </span>
                                     </div>
                                 
@@ -225,25 +227,32 @@
                 
                 @foreach ($datas as $data)
                     <div class="col-md-4">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4><i class="fa fa-fw fa-check"></i> {{$data['TEN_QUAN']}} </h4>
-                            </div>
-                            <div class="panel-body">
-                                <a href="{{Asset('details')}}/{{$data['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 275px; height: 183px' src='{{$data['ANH_DAI_DIEN']}}' alt=""></a>
-                                <br>
-                                <p> Địa chỉ: {{$data['DIA_CHI']}} </p>
-                                <p> Thời gian hoạt động: {{$data['GIO_MO_CUA']}} - {{$data['GIO_DONG_CUA']}} </p>
-                                <p> Giá: {{$data['GIA_THAP_NHAT']}} - {{$data['GIA_CAO_NHAT']}} </p>
-                                
+                            <div class="panel panel-default">
+                                  <div style = "height:70px" class="panel-heading">
+                                        <h4><i class="fa fa-fw fa-check"></i> {{$data['TEN_QUAN']}} </h4>
+                                    </div>
+                                <div style = "height: 350px" class="panel-body">
+                                    <a href="{{Asset('details')}}/{{$data['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 300px; height: 183px;margin-left:30px' data-original='{{$data['ANH_DAI_DIEN']}}' alt="">
+                                    </a>
+                                    <br>
+                                    <div style = "overflow:hidden; max-width:400px; max-height:25px">
+                                        <p > Địa chỉ: {{$data['DIA_CHI']}} </p>
+                                    </div>
+                                    <div style = "overflow:hidden; max-width:400px;max-height:25px">
+                                        <p> Thời gian hoạt động: {{$data['GIO_MO_CUA']}} - {{$data['GIO_DONG_CUA']}}
+                                         </p>
+                                    </div>
+                                    <div style = "overflow:hidden; max-width:400px;max-height:25px">
+                                        <p> Giá: {{$data['GIA_THAP_NHAT']}} - {{$data['GIA_CAO_NHAT']}} </p>
+                                    </div> 
                                     <button type = "button" class="btn btn-default">Chi tiết</a>
-                                
+                                 </div>
+                                 <div style = "height:50px" class = "panel-footer"> 
+                                        <p>Footer</p> 
+                                </div>
                             </div>
-                            <div class = "panel-footer"> 
-                                <p>Footer</p> 
-                            </div>
+                                  
                         </div>
-                    </div>
                 @endforeach
             </div>
             <!-- /.row -->
@@ -298,7 +307,7 @@
                                          <label><input type="checkbox" value="" checked>Remember me</label>
                                      </div>
                                      <!-- type = submit : goi thang len server, type = button: dung ajax -->
-                                     <button type="button" class="btn btn-success" style = "background-color: #DEB887" id = "sign_in" ><span class="glyphicon glyphicon-off"></span> Login</button> 
+                                     <button type="button" class="btn btn-success" style = "border-color: #DEB887;background-color: #DEB887" id = "sign_in" ><span class="glyphicon glyphicon-off"></span> Login</button> 
                                 </form>
                           </div>
                           <div class="modal-footer">
@@ -342,7 +351,7 @@
                                         <input type="email" class="form-control" id="email_1" name="email_1" placeholder="Enter email">
                                      </div>
                                      <!-- type = submit : goi thang len server, type = button: dung ajax -->
-                                     <button style = "background-color: #DEB887"class="btn btn-success" id = "register" ><span class="glyphicon glyphicon-off"></span>Register</button> 
+                                     <button style = "border-color: #DEB887;background-color: #DEB887"class="btn btn-success" id = "register" ><span class="glyphicon glyphicon-off"></span>Register</button> 
                                 </form>
                           </div>
                           <div class="modal-footer">

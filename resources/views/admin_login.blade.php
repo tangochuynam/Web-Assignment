@@ -12,7 +12,7 @@ Admin-login
 	@if(isset($error_message))
 	<label class="error"> {{$error_message}} </label>
 	@endif
-	<button class="btn btn-lg btn-primary btn-block">Login</button>
+	<button class="btn btn-lg btn-success btn-block">Login</button>
 </form>
 
 @endsection

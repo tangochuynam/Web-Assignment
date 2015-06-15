@@ -16,19 +16,25 @@
     @foreach ($data as $datas)
         <div class="col-md-4">
             <div class="panel panel-default">
-                <div class="panel-heading">
+                <div  style = "height:70px" class="panel-heading">
                     <h4><i class="fa fa-fw fa-check"></i> {{$datas['TEN_QUAN']}} </h4>
                 </div>
-                <div class="panel-body">
-                    <a href="{{Asset('details')}}/{{$datas['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 275px; height: 183px' src='{{$datas['ANH_DAI_DIEN']}}' alt=""></a>
+                <div style = "height: 350px"  class="panel-body">
+                    <a href="{{Asset('details')}}/{{$datas['MA_QUAN']}}"> <img class="img-responsive img-portfolio img-hover" style='width: 275px; height: 183px;margin-left:30px' data-original='{{$datas['ANH_DAI_DIEN']}}' alt=""></a>
                     <br>
-                    <p> Địa chỉ: {{$datas['DIA_CHI']}} </p>
-                    <p> Thời gian hoạt động: {{$datas['GIO_MO_CUA']}} - {{$datas['GIO_DONG_CUA']}} </p>
-                    <p> Giá: {{$datas['GIA_THAP_NHAT']}} - {{$datas['GIA_CAO_NHAT']}} </p>
+                    <div style = "overflow:hidden; max-width:400px; max-height:25px">
+                        <p> Địa chỉ: {{$datas['DIA_CHI']}} </p>
+                    </div>
+                    <div style = "overflow:hidden; max-width:400px; max-height:25px">
+                        <p> Thời gian hoạt động: {{$datas['GIO_MO_CUA']}} - {{$datas['GIO_DONG_CUA']}} </p>
+                    </div>
+                    <div style = "overflow:hidden; max-width:400px; max-height:25px">
+                        <p> Giá: {{$datas['GIA_THAP_NHAT']}} - {{$datas['GIA_CAO_NHAT']}} </p>
+                    </div> 
                     <button type = "button" onclick = "myfuction()" class="btn btn-default">Chi tiết</a>
                 </div>
-                <div class = "panel-footer"> 
-                    <p>Footer</p> 
+                <div style = "height:50px" class = "panel-footer"> 
+                    <p></p> 
                 </div>
             </div>
         </div>
