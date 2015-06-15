@@ -40,7 +40,7 @@
         </div>
     @endforeach
     </div>
-    
+    @include("footer")
     <script>
     $(function() {      
           $('.img-responsive').lazyload({
